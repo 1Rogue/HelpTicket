@@ -1,5 +1,5 @@
 name: HelpTicket
-main: com.rogue.helpticket.HelpTicketMain
+main: com.rogue.helpticket.HelpTicket
 version: ${project.version}
 authors: [1Rogue, vanZeben, ImDeity]
 description: This plugin is used for players to log problems, requests and complaints.
@@ -7,4 +7,4 @@ website: http://dev.bukkit.org/server-mods/helpticket
 depend: [DeityAPI]
 commands:
   Ticket:
-        aliases: [pe]
+    aliases: [pe]
