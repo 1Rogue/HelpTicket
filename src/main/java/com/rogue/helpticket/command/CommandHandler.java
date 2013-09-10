@@ -38,7 +38,9 @@ public class CommandHandler implements CommandExecutor {
     public CommandHandler(HelpTicket plugin) {
         this.plugin = plugin;
 
-        SubCommand[] cmds = new SubCommand[]{};
+        SubCommand[] cmds = new SubCommand[]{
+            new ListCommand(this.plugin)
+        };
 
         for (SubCommand cmd : cmds) {
             commands.put(cmd.getName(), cmd);
@@ -62,8 +64,13 @@ public class CommandHandler implements CommandExecutor {
             if (sender.hasPermission("helpticket.cmd." + command)) {
                 boolean success = executor.execute(sender, newArgs);
                 if (!success) {
-                    for (String help : executor.getHelp()) {
-                        this.plugin.communicate(sender, help);
+                    String[] help = executor.getHelp();
+                    for (int i = 0; i < help.length; i++) {
+                        if (i == 0) {
+                            this.plugin.communicate(sender, "Usage: /ticket " + help[i]);
+                        } else {
+                            this.plugin.communicate(sender, help[i]);
+                        }
                     }
                 }
             } else {
