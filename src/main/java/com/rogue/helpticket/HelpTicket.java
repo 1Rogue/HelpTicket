@@ -17,6 +17,7 @@
 package com.rogue.helpticket;
 
 import com.rogue.helpticket.command.CommandHandler;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -44,6 +45,10 @@ public class HelpTicket extends JavaPlugin {
     @Override
     public void onDisable() {
         
+    }
+    
+    public static HelpTicket getPlugin() {
+        return (HelpTicket)Bukkit.getPluginManager().getPlugin("HelpTicket");
     }
     
     public CommandHandler getCommandHandler() {
