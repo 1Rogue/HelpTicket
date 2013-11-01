@@ -26,27 +26,28 @@ import org.bukkit.command.CommandSender;
  * @version 12.10.01
  */
 public class ListCommand implements SubCommand {
-    
+
     private final HelpTicket plugin;
-    
+
     public ListCommand(HelpTicket plugin) {
         this.plugin = plugin;
     }
 
     public boolean execute(CommandSender sender, String[] args) {
+
+        int page = 1;
+        int status = 0;
         if (args.length > 0) {
-            int page = 0;
-            if (args.length > 1) {
-                page = Integer.parseInt(args[1]);
-            }
-            int status = 0;
             if (args[0].equalsIgnoreCase("closed")) {
                 status = 1;
             } else if (args[0].equalsIgnoreCase("all")) {
                 status = 2;
             }
-            //List<Ticket> tickets = this.plugin.getDataManager().getDataHandler().getTickets(status, page);
+            if (args.length > 1) {
+                page = Integer.parseInt(args[1]);
+            }
         }
+        //List<Ticket> tickets = this.plugin.getDataManager().getDataHandler().getTickets(status, page);
         return false;
     }
 
@@ -60,5 +61,4 @@ public class ListCommand implements SubCommand {
             "Lists tickets stored within the database"
         };
     }
-    
 }

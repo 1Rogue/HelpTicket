@@ -17,6 +17,7 @@
 package com.rogue.helpticket;
 
 import com.rogue.helpticket.command.CommandHandler;
+import com.rogue.helpticket.data.DataManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -28,9 +29,10 @@ import org.bukkit.plugin.java.JavaPlugin;
  * @author 1Rogue
  * @version 12.10.01
  */
-public class HelpTicket extends JavaPlugin {
+public final class HelpTicket extends JavaPlugin {
     
     private CommandHandler commands;
+    private DataManager data;
     
     @Override
     public void onLoad() {
@@ -39,7 +41,11 @@ public class HelpTicket extends JavaPlugin {
     
     @Override
     public void onEnable() {
-        commands = new CommandHandler(this);
+        
+        this.data = new DataManager(this, true);
+        
+        this.commands = new CommandHandler(this);
+        
     }
     
     @Override
